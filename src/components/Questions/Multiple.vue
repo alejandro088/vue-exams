@@ -11,7 +11,7 @@
                 </v-textarea>
 
                 <v-checkbox v-for="answer in answers"  
-                    :value="answer.correct" 
+                    v-model="answer.correct" 
                     :label="answer.text"
                     :key="answer.text" 
                 >             
@@ -24,7 +24,7 @@
              <v-col cols="6">
                 <h3>{{ message }}</h3>
                 <v-checkbox v-for="answer in answers"  
-                    :value="answer.request"
+                    v-model="answer.request"
                     :key="answer.text"
                     :color="answer.color" 
                 >
