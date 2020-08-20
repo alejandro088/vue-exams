@@ -2,24 +2,31 @@
     <v-container>
         <v-row>
             <v-col cols="6">
-                <v-textarea
-                label="Escriba su pregunta.."
-                v-model="message"
-                auto-grow
-                >
+                <v-row justify="space-around">
+                    <v-col cols="12">
+                        <v-textarea
+                        label="Escriba su pregunta.."
+                        v-model="message"
+                        rows="1"
+                        auto-grow
+                        >
 
-                </v-textarea>
-
-                <v-checkbox v-for="answer in answers"  
-                    v-model="answer.correct" 
-                    :label="answer.text"
-                    :key="answer.text" 
-                >             
-                </v-checkbox>
-               
-                <v-text-field v-model="item.text" label="Escriba una respuesta.."></v-text-field>
-                <v-btn @click="addAnswer()">Añadir respuesta</v-btn>
-                <pre> {{ $data }} </pre>
+                        </v-textarea>
+                    </v-col>
+        
+                        <v-checkbox v-for="answer in answers"  
+                            v-model="answer.correct" 
+                            :label="answer.text"
+                            :key="answer.text" 
+                        >             
+                        </v-checkbox>
+                        
+                    <v-col cols="12">
+                        <v-text-field v-model="item.text" label="Escriba una respuesta.."></v-text-field>
+                        <v-btn @click="addAnswer()">Añadir respuesta</v-btn>
+                        <pre> {{ $data }} </pre>
+                    </v-col>
+                </v-row>
             </v-col>
              <v-col cols="6">
                 <h3>{{ message }}</h3>
