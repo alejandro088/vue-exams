@@ -4,7 +4,7 @@
             <v-col cols="6">
                 <v-textarea
                 label="Escriba su pregunta.."
-                :value="message"
+                v-model="message"
                 auto-grow
                 >
 
@@ -19,6 +19,7 @@
                
                 <v-text-field v-model="item.text" label="Escriba una respuesta.."></v-text-field>
                 <v-btn @click="addAnswer()">Añadir respuesta</v-btn>
+                <pre> {{ $data }} </pre>
             </v-col>
              <v-col cols="6">
                 <h3>{{ message }}</h3>
