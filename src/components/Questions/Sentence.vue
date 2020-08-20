@@ -1,19 +1,29 @@
 <template>
     <v-container>
         <v-row>
-            <v-col cols="8">
+            <v-col cols="6">
+                <p>Encierre entre corchetes, cada palabra que el estudiante completará en su frase. Luego haga click en Validar</p>
                 <v-textarea
-                label="Escriba [...] por cada palabra que el usuario deba completar en su frase"
-                v-model="message"
-                >
+                    label="Encierre entre corchetes, cada palabra que el estudiante completará en su frase"
+                    v-model="message"
+                    rows="1"
+                    auto-grow
+                />
 
-                </v-textarea>
-                <v-btn @click="addAnswer()">Añadir respuestas</v-btn>
-               
-                <v-text-field v-for="answer in answers" v-model="answer.text" :key="answer.index" label="Escriba una respuesta.."></v-text-field>
-            </v-col>
-             <v-col cols="4">
+                <v-btn @click="addAnswer()">Validar</v-btn>
+
                 <pre>{{ $data }}</pre>
+               
+                
+            </v-col>
+            <v-col cols="6">
+                <form id="phrase">
+                    <p v-html="phrase"></p>
+                    <v-btn v-on:click.prevent="validate">Corregir!!</v-btn>
+                </form>
+
+                <p v-for="result in results" :key="result.index">{{ result }}</p>
+                
             </v-col>
         </v-row>
      </v-container>
@@ -25,23 +35,46 @@ export default {
         return {
             message: '',
             answers: [],
-            item: {
-                text: '',
-            }
+            results: [],
         }
     },
     methods: {
         addAnswer: function() {
-            let count = this.message.match(new RegExp(/\[([A-Za-z])\w+\]/, 'g'));
-            console.log(count)
+            let answers = this.message.match(new RegExp(/\[([A-Za-z])\w+\]/, 'g'));
+            console.log(answers)
 
-            this.answers = []
+            this.answers = answers
 
-            for (let i = 0; i < count; i++) {
-                this.answers.push({text: this.item.text});
-                
-            }
+        },
+        validate() {               
+           
+           let answers = this.answers
+           let results = []
+           let inputs = document.getElementById("phrase").getElementsByTagName("input");
+
+           inputs.forEach((element, index) => {
+               
+                let answer = answers[index].replace("[","").replace("]","")
+
+                if (answer === element.value){
+                    console.log(answer, element.value, true)
+                    results[index] = "La palabra "+element.value+" es correcta"     
+                } else {
+                    console.log(answer, element.value, false)
+                    results[index] = "La palabra "+element.value+" es incorrecta"
+                }
+           });
+
+           this.results = results;
+
+           
         }
     },
+    computed: {
+        phrase: function() {
+            let result = this.message.replace(new RegExp(/\[([A-Za-z])\w+\]/, 'g'), "<input type='text' placeholder='......'></input>")
+            return result;
+        }
+    }
 }
 </script>
