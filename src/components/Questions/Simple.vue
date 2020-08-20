@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <v-row>
-            <v-col cols="12">
+            <v-col cols="8">
                 <v-textarea
                 label="Escriba su pregunta.."
                 :value="message"
@@ -20,6 +20,9 @@
                 </v-radio-group>
                 <v-text-field v-model="item" label="Escriba una respuesta.."></v-text-field>
                 <v-btn @click="addAnswer()">Añadir respuesta</v-btn>
+            </v-col>
+             <v-col cols="4">
+                <pre>{{ $data }}</pre>
             </v-col>
         </v-row>
      </v-container>

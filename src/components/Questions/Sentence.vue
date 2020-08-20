@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <v-row>
-            <v-col cols="12">
+            <v-col cols="8">
                 <v-textarea
                 label="Escriba [...] por cada palabra que el usuario deba completar en su frase"
                 v-model="message"
@@ -11,6 +11,9 @@
                 <v-btn @click="addAnswer()">Añadir respuestas</v-btn>
                
                 <v-text-field v-for="answer in answers" v-model="answer.text" :key="answer.index" label="Escriba una respuesta.."></v-text-field>
+            </v-col>
+             <v-col cols="4">
+                <pre>{{ $data }}</pre>
             </v-col>
         </v-row>
      </v-container>
