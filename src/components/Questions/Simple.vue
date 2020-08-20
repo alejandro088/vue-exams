@@ -9,9 +9,7 @@
                             v-model="message"
                             rows="1"
                             auto-grow
-                        >
-
-                        </v-textarea>
+                        />
                     </v-col>
 
                     <v-radio-group v-model="correct">
@@ -19,11 +17,9 @@
                             :value="answer" 
                             :label="answer"
                             :key="answer" 
-                        >
-                        
-                        </v-radio>
-                
+                        />                                        
                     </v-radio-group>
+
                     <v-col cols="12">
                         <v-text-field v-model="item" label="Escriba una respuesta.."></v-text-field>
                         <v-btn @click="addAnswer()">Añadir respuesta</v-btn>
@@ -72,8 +68,7 @@ export default {
         this.answers.push(item)
       },
       validate() {
-        
-        
+               
            if (this.correct != this.request)
            {
                this.color = 'error'
@@ -82,7 +77,6 @@ export default {
                this.color = 'success'
                this.response = 'Su respuesta es correcta'
            }
-
     
       }
     },
